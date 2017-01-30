@@ -112,6 +112,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#source ~/.git-prompt.sh
+
 gitprompt() {
     PS1="\[\e[0;31m\]\W$(__git_ps1 " \[\e[1;31m\](%s)") \$ \[\e[m\]"
   }
