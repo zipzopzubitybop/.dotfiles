@@ -112,10 +112,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#source ~/.git-prompt.sh
-
-gitprompt() {
-    PS1="\[\e[0;31m\]\W$(__git_ps1 " \[\e[1;31m\](%s)") \$ \[\e[m\]"
-  }
-PROMPT_COMMAND=gitprompt
 eval $(dircolors -b $HOME/.dircolors)
+
+# git prompt stuff http://dotshare.it/dots/8361/
+parse_git_branch() {
+             git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+PS1='\033[1;33m(\t)\033[m \033[1;36m[ \u |\033[m \033[1;32m\W\033[m \033[1;36m]\033[m $(parse_git_branch)\n> '
